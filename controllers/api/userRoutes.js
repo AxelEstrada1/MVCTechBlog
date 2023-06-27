@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
     res.status(400).json(err);
   }
 });
-
+//login
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
@@ -47,7 +47,7 @@ router.post('/login', async (req, res) => {
     res.status(400).json(err);
   }
 });
-
+//logging out
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {

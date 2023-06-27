@@ -1,0 +1,35 @@
+{{#unless logged_in}}
+  <script>
+    window.location.href = "/login";
+  </script>
+{{/unless}}
+
+<div class="text-center background">
+  <h2>{{name}}</h2>
+  <p>{{description}}</p>
+  <p>Created by {{user.name}} on {{format_date date_created}}</p>
+</div>
+
+<form>
+  <div class="col-md-6">
+    <h3>Add a comment!</h3>
+    <div class="form-group">
+      <textarea class="form-input" id="project-desc" name="project-desc"></textarea>
+    </div>
+    <div class="form-group">
+      <button data-project-id='{{id}}' class="btn btn-primary" id="createButton">Create Comment</button>
+    </div>
+  </div>
+</form>
+
+{{#each comments as |comment|}}
+  <div class="background">
+    <div>
+      <h4>Comment created by {{comment.user.name}} on {{format_date comment.date_created}}</h4>
+    </div>
+    <h4>{{comment.description}}</h4>
+    <button data-comment-id='{{comment.id}}' data-project-id='{{id}}' class="btn btn-primary deleteButton">Delete</button>
+  </div>
+{{/each}}
+
+<script src="/js/comment.js"></script>

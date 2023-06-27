@@ -10,32 +10,51 @@ class User extends Model {
 
 User.init(
   {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+     id: {
+       type: DataTypes.INTEGER,
+       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
-    },
-    name: {
-      type: DataTypes.STRING,
+       autoIncrement: true,
+     }, name:
+      {
+       type: DataTypes.STRING,
       allowNull: false,
-    },
-    email: {
+     },
+     email: {
       type: DataTypes.STRING,
-      allowNull: false,
+       allowNull: false,
       unique: true,
       validate: {
         isEmail: true,
+       },
+     },
+     password: {
+       type: DataTypes.STRING,
+       allowNull: false,
+       validate: {
+         len: [8],
       },
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [8],
+     },
+    
+      id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true
       },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: [4]
+        }
+      }
     },
-  },
+  
   {
     hooks: {
       beforeCreate: async (newUserData) => {
@@ -51,7 +70,7 @@ User.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'user',
+    modelName: 'User',
   }
 );
 
